@@ -1,5 +1,9 @@
-/node_modules
-/vendor
+# Node
+**/node_modules
+# PHP / Laravel
+**/back-end/vendor
 /back-end/.env
-/web/node_modules
-/mobile/node_modules
+# Expo
+**/mobile/.expo
+# React
+**/web/build
