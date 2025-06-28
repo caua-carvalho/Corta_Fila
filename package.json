@@ -1,5 +1,5 @@
 {
-  "name": "agenda-barbearia-monorepo",
+  "name": "corta-fila",
   "private": true,
   "workspaces": ["mobile", "web", "back-end"],
   "scripts": {
