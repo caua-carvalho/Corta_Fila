@@ -1,0 +1,9 @@
+{
+  "name": "agenda-barbearia-monorepo",
+  "private": true,
+  "workspaces": ["mobile", "web", "back-end"],
+  "scripts": {
+    "start:mobile": "cd mobile && npm run start",
+    "start:web":    "cd web    && npm run start"
+  }
+}
