@@ -1,4 +1,4 @@
-# Monorepo “Seu‑Projeto”
+# Monorepo Corta Fila
 
 > **Visão Geral**
 > Monorepo unificado contendo:
@@ -213,7 +213,3 @@ seu-monorepo/
 4. **Pull Request** com revisão de código, testes e documentação atualizada
 
 ---
-
-## Licença
-
-Este projeto está licenciado sob a **MIT License**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
