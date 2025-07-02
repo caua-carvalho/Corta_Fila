@@ -1,8 +1,13 @@
 <?php
-// public/login.php
+// Ativa exibição de erros
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 header('Content-Type: application/json; charset=utf-8');
 require __DIR__ . '/../src/db.php';
-require __DIR__ . '/../src/auth.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ . '/../Auth/auth.php';
 
 $data    = json_decode(file_get_contents('php://input'), true);
 $phone   = trim($data['phone'] ?? '');
@@ -17,8 +22,8 @@ if (!$phone || !$password) {
 // Busca pelo phone
 $stmt = $pdo->prepare("
     SELECT user_id, password_hash, is_active
-      FROM users
-     WHERE phone = :phone
+    FROM users
+    WHERE phone = :phone
 ");
 $stmt->execute([':phone' => $phone]);
 $user = $stmt->fetch();
