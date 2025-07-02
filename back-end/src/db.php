@@ -1,6 +1,6 @@
 <?php
 // src/db.php
-require __DIR__ . '/../config/config';
+require __DIR__ . '/../config/config.php';
 
 try {
     $pdo = new PDO(
