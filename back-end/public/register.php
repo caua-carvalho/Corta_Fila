@@ -9,11 +9,11 @@ error_reporting(E_ALL);
 // 2) Define que a saída sempre será JSON
 header('Content-Type: application/json; charset=utf-8');
 
-try {
+try {                   
     require __DIR__ . '/../src/db.php';
     require __DIR__ . '/../config/config.php';
 
-    // 3) Lê o JSON do body
+    // Lê o JSON do body
     $data = json_decode(file_get_contents('php://input'), true);
     $name     = trim($data['name'] ?? '');
     $phone    = trim($data['phone'] ?? '');
@@ -26,7 +26,7 @@ try {
         exit;
     }
 
-    // 4) Verifica duplicados
+    // Verifica duplicados
     $stmt = $pdo->prepare("SELECT user_id FROM users WHERE phone = :phone");
     $stmt->execute([':phone' => $phone]);
     if ($stmt->fetch()) {
@@ -44,7 +44,7 @@ try {
         }
     }
 
-    // 5) Insere usuário
+    // Insere usuário
     $hash   = password_hash($password, PASSWORD_DEFAULT);
     $roleId = $defaultRoleId; // do config.php
     $stmt = $pdo->prepare("
@@ -52,7 +52,7 @@ try {
         VALUES (:role_id, :name, :phone, :email, :hash)
     ");
     $stmt->execute([
-        ':role_id'=> 1,
+        ':role_id'=> $roleId,
         ':name'   => $name,
         ':phone'  => $phone,
         ':email'  => $email,
