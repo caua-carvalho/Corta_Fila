@@ -1,7 +1,7 @@
 <?php
 // src/auth.php
 require __DIR__ . '/../config/config.php';
-require __DIR__ . '/db.php';
+require __DIR__ . '/../src/db.php';
 
 /**
  * Gera um token (32 hex) e salva em user_tokens.
