@@ -12,6 +12,7 @@ header('Content-Type: application/json; charset=utf-8');
 try {                   
     require __DIR__ . '/../src/db.php';
     require __DIR__ . '/../config/config.php';
+    require __DIR__ . '/../Auth/auth.php';
 
     // Lê o JSON do body
     $data = json_decode(file_get_contents('php://input'), true);
@@ -59,7 +60,17 @@ try {
         ':hash'   => $hash,
     ]);
 
-    echo json_encode(['success' => true]);
+    // 5) Pega o ID do usuário recém inserido
+    $userId = (int) $pdo->lastInsertId();
+
+    // 6) Gera o token de autenticação
+    $token = generateToken($userId);    
+
+    
+    echo json_encode([
+        'success' => true,
+        'token'   => $token,        
+    ]);
 
 } catch (Throwable $e) {
     // 6) Em caso de qualquer erro, mostra a mensagem
