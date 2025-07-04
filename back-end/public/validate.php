@@ -9,7 +9,7 @@ require __DIR__ . '/../Auth/auth.php';
 
 $userId = requireAuth();
 
-// Busca dados básicos do usuário
+// Busca dados do usuário no banco
 global $pdo;
 $stmt = $pdo->prepare("
     SELECT user_id, role_id, name, phone, email, is_active
@@ -18,6 +18,13 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute([':id' => $userId]);
 $user = $stmt->fetch();
+
+if (!$user) {
+    http_response_code(404);
+    echo json_encode(['error' => 'Usuário não encontrado']);
+    exit;
+}
+
 
 echo json_encode([
     'authorized' => true,
